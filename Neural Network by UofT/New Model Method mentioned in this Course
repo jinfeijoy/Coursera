@@ -1,2 +1,52 @@
 - Lesson 4:
   - t-SNE: t-Distributed Stochastic Neighbor Embedding (t-SNE) is a (prize-winning) technique for dimensionality reduction that is particularly well suited for the visualization of high-dimensional datasets. 
+
+- Lesson 6: Optimization: How to make the learning go faster
+  - Momentum Method:
+          - it damps oscillations in directions of high curvature by combining gradients with opposite signs.
+          - it builds up speed in directions with a gentle but consistent gradient.
+  - The equation of Momentum Method: can be found in the neural network slides: https://d3c33hcgiwev3.cloudfront.net/_4bd9216688e0605b8e05f5533577b3b8_lec6.pdf?Expires=1509840000&Signature=kAjFj-pYSO~AL032-X7dFW5ABisiYaQqQ86FiDYV7KNL-hKXqCO1YfZ6SUiL4MIaXl06qIzjhmHdpRnhJCjRH2vj-9zn5M196m1RAOeSHLItez8jixmBnFoOOXW4OJ4tGdSxxw2AqCkXqWGx~QqrVG~eJ-CK7PzY1KNxLWceb2M_&Key-Pair-Id=APKAJLTNE6QMUY6HBC5A 
+  - momentum and learning rate: 
+            use small learning rate and a big momentum, allows you to get the overall learning rate, the learning rate would be much larger than only use the small learning rate. 
+            if only use the big learning rate by itself, the it would cause divergent oscillations.
+  - A better type of momentum:
+          - the standard momentum method: 
+                - first, compute the gradient at the current location and 
+                - then take a big jump in the direction of the updated accumulated gradiant
+          - Ilya Sutskever (inspired by the Nesterov method for optimizing convex function): 
+                - first, make a big jump in the direction of the previous accumulated gradiant
+                - then measure the gradient where you end up and make a correction   
+  - Individual Learning Rate: 
+          - start with a local gain of 1 for every weight
+          - increase the local gain if the gradient for that weight does not change sign
+          - use small additive increases and multiplicative decreases.
+              - this ensures that big gains decay rapidly when oscillations start
+              - if the gradient is totally random the gain will hover around 1 when we increase by plus delta half the time and decrease the times 1-delta half the time.
+              - the function can be found in the slides
+ - rmsprop: divide the gradient by a running average of its recent magnitude.
+          - it is a basic ways to learning large neural network with a large redundant dataset
+          - rprop: using only the sign of the gradient, full-batch method, does not work with mini-batches
+                  - this combines the idea of only using the sign of the gradient with the idea of adapting the step size separately for each weight.
+                  - increase the step size for a weight multiplicatively (eg. times 1.2) if the signs of its last two gradients agree.
+                  - otherwise, decrease the step size for a weight multiplicatively (eg. times 0.5) 
+                  - limit the step sizes to be less than 50 and more than a millionth (Mike Shuster's advice).
+          -rmsprop: a mini-batch version of rprop
+                  - rprop is equivalent to using the gradient but also dividing by the size of the gradient
+                        - the problem with mini-batch rprop is that we divide by a different number for each mini-batch, so why not force the number we divide by to be very similar for adjacent mini-batches?
+                  - rmsprop: keep a moving average of the squared gradient for each weight
+     - Summary:
+          - For small datasets: (e.g. 10,000 cases) or bigger datasets without too much redundancy, use a full-batch method
+                - Conjugate gradient, LBFGS ...
+                - adaptive learning rates, rprop ...
+          - For big, redundant datasets use mini-batches.
+                - Try gradient descent with momentum.
+                - Try rmsprop (with momentum ?)
+                - Try LeCun's latest recipe
+          - Why there is no simple recipe:
+                - neural nets differ a lot
+                    - very deep nets (especially ones with narrow bottlenecks)
+                    - recurrent nets
+                    - wide shallow nets
+                - task differ a lot:
+                    - some require very accurate weights, some dont
+                    - some have many very rare cases (e.g. words)
