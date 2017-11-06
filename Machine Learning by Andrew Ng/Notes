@@ -26,3 +26,17 @@ SVM:
         - neural network likely to work well for most of these settings, but may be slower to train.
         - local minimal is not a problem for SVM, but sometimes, it is a problem for neural network
         
+        
+        
+Unsupervised Learning: 
+	- Clustering:
+		- K-means: the most popular algorithm
+			1. randomly initialize K cluster centroids u1, u2, ... uK
+			2. Repeat:
+				1) for i =1 to m, c(i) := index (from 1 to K) of cluster centroid closedst to x(i)
+				2) for k = 1 to K, uk := average (mean) of points assigned to cluster k
+
+	
+	
+
+        
