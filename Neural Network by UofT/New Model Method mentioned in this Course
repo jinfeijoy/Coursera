@@ -50,3 +50,11 @@
                 - task differ a lot:
                     - some require very accurate weights, some dont
                     - some have many very rare cases (e.g. words)
+
+
+Lecture 7a. Modelling Sequences: A brief overview:
+Targets: to show how the recursive nueral network are related to the models vectors.
+
+- Memoryless model for sequences: autoregression models
+- Beyond memoryless models: give the generative model some hidden state, and give hidden state its own internal dynamics,
+
