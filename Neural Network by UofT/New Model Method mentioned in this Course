@@ -57,4 +57,52 @@ Targets: to show how the recursive nueral network are related to the models vect
 
 - Memoryless model for sequences: autoregression models
 - Beyond memoryless models: give the generative model some hidden state, and give hidden state its own internal dynamics,
+- How rnn differ from all other standard models:
+  - Linear Dynamical System (engineers love them!)
+  - Hidden Markov Models (computer scientists love them!) 
+      - fundamental limitation of HMMs: N hidden states it can only remember log(N) bits about what it generated so far.
+      - stochastic models
+  - RNN:very powerful, because they combine two properties:
+      - Distributed hidden state what allows them to store a lot of information about the past efficiently
+      - Non-linear dynamics that allows them to update their hidden state in complicated ways.
+      - with enough neurons and time, RNNs can compute anything that can be computed by your computer.
+      - what kinds of behaviour can RNNs exhibit?
+          - they can oscillate. good for motor control?
+          - they can settle to point attractors. good for retrieving memories?
+          - they can behave chaotically. bad for information processing?
+          - RNNs could potentially learn to implement lots of small programs that each capture a nugget of knowledge and run in parallel, interating to produce very complicated effects.
+      - But the computational power of RNNs makes them very hard to train.
+      - deterministic
+      
+  - Feedforward net: 
+      - we must decide in advance the maximum number of digits in each number.
+      - feedforward nets do not generalize well on the binary addtion tast.
+- Why it is hard to train RNNs
+   - the backward pass is linear:
+      - there is a big difference between the forward and backward passes:
+        - in the forward pass we use squashing functions (like the logistic) to prevent the activity vectors from exploding.
+        - the backward pass, is completely linear. if you double the error derivatives at the final layer, all the error derivatives will double.
+   - the problem of exploding or vanishing gradients:
+      - if the weights are small, the gradients shrink exponentially, if the weights are big the gradients grow exponentially.
+      - typical feed-forward neural nets can cope with these exponential effects because they only have a few hidden layers.
+      - in an RNN trained on long sequences ( e.g. 100 time steps) the gradients can easily explode or vanish.
+        - we can avoid this by initializing the weights very carfelly.
+      - even with good initial weights, its very hard to detect that current target output depends on an input from many time-steps ago. 
+        - so RNNs have difficulty dealing with long-range dependencies.
+      - Four effective ways to learn an RNN:
+        - long short term memory
+            - Succeussful on recognizing hand writing.
+            - Hochreiter & Schmidhuber, they designed a memory cell using logistic and linear units with multiplicative interactions, 
+              information gets into the cell whenever its 'write' gate is on. the information stays in the cell so long as its 'keep' gate is on.
+              information can be read from the cell by turning on its 'read' gate.
+            
+        - Hessian Free Optimization
+        - Echo State Neuworks
+        - Good initialization with momentum
+        
+      
+   
+   
+   
+
 
