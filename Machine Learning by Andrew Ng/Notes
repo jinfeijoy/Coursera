@@ -57,7 +57,11 @@ Unsupervised Learning:
 				- [U,S,V]=svd(Sigma);
 				- Ureduce = U(:, 1:k);
 				- z =  Ureduce' * x;
-			
+		- Reconstruction from compressed representation: z = Ureduce'*x, thus, x=Ureduce*z, Ureduce is n*k matrix, x is n*n matrix
+		- choosing the number of PC (k): 
+			- average squared projection error: 1/m*sum||xi-x(approx)i||^2
+			- total variation in the data: 1/m * sum||xi||^2
+			-
 
 	
 	
