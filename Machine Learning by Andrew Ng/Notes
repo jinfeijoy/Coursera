@@ -46,7 +46,13 @@ Unsupervised Learning:
 			- choose the number of clusters by hand based on the visualization.
 			- Elbow method: run multiple no.of.clusters and get the cost function J, select the trade off no.of.clusters and cost function value. 
 			- evaluate k-means based on a metric for how well it performs for that later purpose.
-			
+	- PCA (Principal Component Analysis):
+		- try to find a surface to minimize the sum of square distance (projection error)
+			- reduce from n-dimension to k-dimension: find k vectors u(1), u(2), ..., u(k) onto which to project the data, so as to minimize the projection error.
+			- PCA is not linear regression, all x are treated equally, nothing special, no predicted y here.
+		- feature scaling and nomorlization
+			- data preprocessing (feature scaling / mean normalization)
+			- 
 			
 
 	
