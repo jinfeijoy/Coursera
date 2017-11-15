@@ -35,6 +35,19 @@ Unsupervised Learning:
 			2. Repeat:
 				1) for i =1 to m, c(i) := index (from 1 to K) of cluster centroid closedst to x(i)
 				2) for k = 1 to K, uk := average (mean) of points assigned to cluster k
+		- K-means for non-separated clusters: use for market segmentation
+		- Optimization Objective (k-means): to minimize the sum of xi and centroid k distance.
+		- Random Initialization: K < m, randomly pick K training examples, set mu1, mu2, ..., muK equal to these K examples.
+			- Some problem: it may cause local optima
+				- to solve this problem, try multiple random initilization: 
+					1. for i = 1 : 100 { randomly initialize K-means, run k-means, compute cost function}
+					2. pick clustering that gave lowest cost J
+		- Choose the number of clusters:
+			- choose the number of clusters by hand based on the visualization.
+			- Elbow method: run multiple no.of.clusters and get the cost function J, select the trade off no.of.clusters and cost function value. 
+			- evaluate k-means based on a metric for how well it performs for that later purpose.
+			
+			
 
 	
 	
