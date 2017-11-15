@@ -50,9 +50,13 @@ Unsupervised Learning:
 		- try to find a surface to minimize the sum of square distance (projection error)
 			- reduce from n-dimension to k-dimension: find k vectors u(1), u(2), ..., u(k) onto which to project the data, so as to minimize the projection error.
 			- PCA is not linear regression, all x are treated equally, nothing special, no predicted y here.
-		- feature scaling and nomorlization
-			- data preprocessing (feature scaling / mean normalization)
-			- 
+		- feature scaling and nomorlization: data preprocessing (feature scaling / mean normalization)
+		- Summary:
+			- after mean normalization (ensure every feature has zero mean) and optionally feature scalling: 
+				-Sigma = 1/m * Sum(xi * xi');
+				- [U,S,V]=svd(Sigma);
+				- Ureduce = U(:, 1:k);
+				- z =  Ureduce' * x;
 			
 
 	
