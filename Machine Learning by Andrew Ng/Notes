@@ -61,9 +61,15 @@ Unsupervised Learning:
 		- choosing the number of PC (k): 
 			- average squared projection error: 1/m*sum||xi-x(approx)i||^2
 			- total variation in the data: 1/m * sum||xi||^2
-			-
-
+			- averate_squared_projection_error/total_variation_in_the_data <=0.01: 99% of variance is retained
+			- try different k, then to see if the value <= 0.01
+			- using function [U,S,V]=svd(Sigma) can make it simple: to calculate 1-SUMk(Sii)/SUMn(Sii).
+		- Bad use of PCA: To prevent overfitting. this might work ok, but isn't a good way to address overfitting. Use regularization instead.
+		- Before implementing PCA, first try running whatever you want to do with the original/raw data x(i), only if that doesn't do what you want, then implement PCA and consider using z(i).
+		- to visulize data, to reduce runing memory, to speed up the model
+		
+Anomaly Detection: 
 	
-	
+Recommender Systems: 	
 
         
