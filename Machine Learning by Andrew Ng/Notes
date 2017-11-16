@@ -69,7 +69,66 @@ Unsupervised Learning:
 		- to visulize data, to reduce runing memory, to speed up the model
 		
 Anomaly Detection: 
-	
+	- Some Examples:
+		- Fraud Detection: 
+			- x(i) = features of user i's activities, Model p(x) from data, identify unusual users by checking which have p(x) < ebsilo
+		- Manufacturing: 
+		- Monitoring computers in a data center:
+			- x(i) = features of machinesi, eg. x1=memory use, x2=number of disk accesses, x3=CPI load, x4=CPU load/network traffic
+			- p(x) < ebsilo
+	- Algorithm: 
+		1. choose features xi that you think might be indicative of anomalous examples
+		2. fit parameters mu1, ..., mun, sigma1^2, .., sigman^2, muj=mean(xj), sigmaj^2=mean((xj-muj)^2)
+		3. given new example x, compute p(x): p(x)= SIGMA(1/(sqrt(2*PAI)*sigmaj)*exp(-1*(xj-muj)^2/(2*sigmaj^2))), anomaly if p(x)<ebsilo
+	- Building an anomaly detection system:
+
+		- If we know 10000 good, 20 bad, then 
+			- training set: 6000 good
+			- CV: 2000 good and 10 bad
+			- test: 2000 good and 10 bad
+		- reak-number evaluation: 
+			- predict 1/0 on CV and test dataset, 
+			- y = 1 if p(x) < ebsilo (anomaly), otherwise, y=0 (normal)
+			- possible evaluation matrix: TP, FP, FN, TN; Precision/Recall; F1-score
+		- anomaly detection vs supervised learning
+			- Anomaly detection:
+				- very small number of positive examples (y=1): (0-20 is common)
+				- Large number of negative (y=0) examples
+				- many different types of anomalies, hard for any algorithm to learn from positive examples what the anomalies look like; future anomalies may look nothing like any of the anomalous examples we've seen so far.
+			- Supervised Learning:
+				- large number of positive and negative examples
+				- enough positive examples for algorithm to get a sense of what positive examples are like, future positive examples likely to be similar to ones in training set.
+		- Application
+			- Anomaly detection:
+				- fraud detaction
+				- manufacturing (e.g. aircraft engines)
+				- monitoring machines in a data center, etc.
+			- supervised learning:
+				- email spam classification
+				- weather prediction
+				- cancer classification, etc.
+		- Feature selection
+			- plot the data to histogram plot, to see if the distribution is gaussian distribution, for those non-gaussian distribution variable, do some transformation, like log(x), log(x+c), sqrt(x), x^(1/3), etc.
+			- error analysis:
+				- p(x) is comparable (say, both large) for normal and anomalous examples: need to create new feature
+			- choose features:
+				- choose features that might take on unusually large or small values in the event of an anomaly
+				- eg. monitoring computers in a data center:
+					- x1 = memory use of computer, x2 = number of disk accesses/sec, x3 = CPU load, x4 = network traffic, x5 = (CPI load)^2/network traffic
+	- Multivariate Gaussian distribution:
+		- instead of doing model p1, p2, etc. separately, model p(x) all in one go. parameters: mu belongs to R, Sigma belongs to Rn*n (covariance matrix)
+		- p(x; mu, Sigma) = 1/((2*PAI)^(n/2)*|Sigma|^(1/2))*exp(-1/2*(x-mu)'*Sigma^-1*(x-mu))
+			1. fit model p(x) by setting: mu = mean(xi), Sigma=mean((xi-mu)*(xi-mu)')
+			2. given a new example x, compute p(x) using the above fomula, flag an anomaly if p(x) < ebsilo.
+		- Original Model
+			- more often, manually create features to capture anomalies where x1, x2 take unusual combinations of values
+			- computationally cheaper (alternatively, scales better to large n)
+			- OK even if m (training set size) is small
+		- Multivariate Gaussian Model
+			- automatically captures correlations between features
+			- computationally more expensive
+			- must have m>n (number of examples > number of features) (m>=10n would be a reasonable rule), or else Sigma is non-invertible.
+			- debug: if Sigma is non-invertible, then check redundant features, to check if x1=x2, and x1=x2+x3, etc
 Recommender Systems: 	
 
         
