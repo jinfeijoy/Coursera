@@ -130,5 +130,27 @@ Anomaly Detection:
 			- must have m>n (number of examples > number of features) (m>=10n would be a reasonable rule), or else Sigma is non-invertible.
 			- debug: if Sigma is non-invertible, then check redundant features, to check if x1=x2, and x1=x2+x3, etc
 Recommender Systems: 	
-
-        
+	- Predicting Movie Ratings
+		-Problem formulation:
+			- r(i,j) = 1 if user j has rated movie i (0 otherwise)
+			- y(i,j) = rating by user j on movie i (if defined)
+			- theta(j) = parameter vector for user j
+			- x(i) = feature vector for movie i
+			- For user j, movie i, predicted rating: (theta(j))'*(x(i))
+			- m(j) = no. of movies rated by user j
+			- To learn theta(j): min[(1/(2*m(j))*Sum((predicted_rating - y(i,j))^2+lembda/(2*m(j))*Sum((theta(j))^2)]
+        - Collaborative Filtering Algorithm:
+		- feature learning: start to learn by themself what feature to use
+		- given x can estimate theta, given theta can estimate x, guess theta -> x -> theta -> x -> theta -> x
+		- algorithm: minimization cost function can be found: https://d3c33hcgiwev3.cloudfront.net/_49836d3df9f40f803323ac9d614fcb94_Lecture16.pdf?Expires=1511049600&Signature=J0EM-zRPVrTYVZEUZmC4pN6d6QOrVuhkncR6adqAqdkOXIObPKL6rA7RTev8oLMxHsmUUDmfOk9GQckZCZ2gD43o5YE0B8iDXzGb-74M5xzXe41UxOSNTBFCGdKSFI3BOzXAj6VKTJUo06Xx8ZnlQwf4Ark07y~6iYeyL8Oz0Bg_&Key-Pair-Id=APKAJLTNE6QMUY6HBC5A 
+			1. initialize x(1), ...., x(nm), theta(1), ..., theta(nm) to small random values
+			2. minimize J(x(1), ...., x(nm), theta(1), ..., theta(nm)) using gradient descent (or an advanced optimization algorithm). 
+				E.G. for every j=1, ..., nu, i=1, ..., nm:
+					xk(i):=xk(i)-alpha*Sum((theta(j)'x(i)-y(i,j))*thetak(j)+lembda*xk(i))
+					thetak(i)=thetak(i)-alpha*Sum((theta(j)'x(i)-y(i,j))*xk(j)+lembda*thetak(i))
+			3. for a user with parameters theta and a movie with (learned) feature x, predict a star rating of theta'*x.
+	- Low Rank Matrix Factorization:
+		1. mean normalization: mu
+		2. theta'*x+mu
+	
+	
