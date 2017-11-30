@@ -162,6 +162,23 @@ Large Scale Machine Learning:
 	- Map Reduce and data parallelism
 		
 	
-
+Photo OCR:
+	- photo OCR pipeline:
+		- text detection
+		- character segmentation
+		- character classification
+	- Pedestrain detection:
+		- supervised learning for pedestrain detection: in pixels in 82*36 image patches, with positive examples and negative examples
+		- sliding window detection:
+			- step-size / stride, slides the window over all pictures
+			- size of image patch, take a lager image patch, etc.
+		- text detection: 
+			- supervised learning: positive examples (include text), negative examples (include non-text)
+			- slideing window for character segmentation:
+				- whether a charaters, or include 2 charaters split in middle, or empty
+				- to get right location to splite character
+				- after split the characters, then do character classification.
+			
+	
 
 
