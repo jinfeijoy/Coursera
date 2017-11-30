@@ -154,3 +154,14 @@ Recommender Systems:
 		2. theta'*x+mu
 	
 	
+Large Scale Machine Learning:
+	- stochastic gradient descent:
+		- randomly shaffle dataset.
+		- mini-batch gradient escent
+	- online learning learning algorithm
+	- Map Reduce and data parallelism
+		
+	
+
+
+
