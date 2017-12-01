@@ -127,9 +127,44 @@ Lecture 8.
 		- they need many more hidden units for a given task then an RNN that learns the hidden->hidden weights
 		-Ilya Sutskerver (2012) has shown that if the weights are initilized using the ESN methods, RNNs can be trained very effectively.
 		
-Lesson 9.	
-   		
-   
+Lesson 9. Overview of ways to improve generalization
+	- Preventing Overfitting:
+		1. get more data
+			- almost always the best bet if you have enough compute power to train on more data
+		2. use a model that has the right capacity
+			- enough to fit the true regularities
+			- not enough to also fit spurious regularities (if they are weaker)
+		3. average many different models
+			- use models with different forms
+			- or train the model on different subsets of the training data (this is called "bagging")
+		4. (Bayesian) use a single neural network architecture, but average the predictions made by many different weight vectors.
+	- Limit the capacity of a neural net:
+		1. architecture: limit the number of hidden layers and the number of units per layers
+		2. early stopping: start with small weights and stop the learning before it overfits
+			- when the weights are very small, every hidden unit is in its linear range.
+			- as the weights grow, the hidden units start using their non-linear ranges so the capacity grows.
+		3. weight-decay: penalize large weights using penalties or constraints on their squared values (L2 penalty) or absolute values (L1 penalty)
+			- L2 weight cost:
+				- it prevents the network from using weights that it does not need
+					- this can often improve generalization a lot because it helps to stop the network from fitting the sampling error
+					- it makes a smoother model in which the output changes more slowly as the input changes
+				- if the network has two very similar inputs it prefers to put half the weight on each rather than all the weight on one.
+			- weight constraints:
+				- weight constraints:
+					- we usually penalize the squared value of each weight separately, instead, we can put a constraint on the maximum squared length of the incoming weight vector of each unit.
+						if an update violates this constraint, we scale down the vector of incoming weights to the allowed length.
+					- have several advantages over weight penalties.
+						- its easier to set a sensible value
+						- they prevent hidden units getting stuck near zero
+						- they prevent weights exploding
+					- when a unit hits it's limit, the effective weight penalty on all of it's weights is determined by the big gradients.
+						- this is more effective than a fixed penalty at pushing irrelevant weights toward zero.
+		4. noise: add noise to the weights or the activities
+   			- L2 weight-decay via noisy inputs.
+				- e.g. add Gaussian noise to the inputs
+	- the bayesian interpretation of weight decay:
+	- MacKay's quick and dirty method of fixing weight costs:
+		- 
    
 
 
