@@ -96,12 +96,39 @@ Targets: to show how the recursive nueral network are related to the models vect
               information gets into the cell whenever its 'write' gate is on. the information stays in the cell so long as its 'keep' gate is on.
               information can be read from the cell by turning on its 'read' gate.
             
+        
+Lecture 8. 
+  -
         - Hessian Free Optimization
         - Echo State Neuworks
         - Good initialization with momentum
-        
-      
-   
+  - best language model so far (upto 2012):
+        - Tomas Mikolov and his collaborators have recently trained quite large RNNs on quite large training sets using BPTT.
+              -they do better than feed-forward neural nets.
+              -they do better than the best other models
+              -they do even better when averaged with other models
+         -RNNs require much less training data to reach the same level of performance as other models.
+         - Rnns improve faster than other methos as the dataset gets bigger: this is going to make them very hard to beat.
+  - Echo state networks
+  	- Key ideas of echo state networks
+		- a very simple way to learn a feedforwrad network is to make the early layers random and fixed.
+		- then we just learn the last layer which is a linear model that uses the transformed inputs to predict the target outputs
+			- a big random expansion of the input vector can help
+		- the equivalent idea for RNNs is to fix the input->hidden connections and the hidden->hidden connections at random values and only learn the hidden->output connections.
+			- the learning is then very simple (assuming linear output units)
+			- its important to set the random connections very carfully so that the RNN does not explode or die.
+	- setting the random connections in an echo state network (details in the slides)
+	- good aspect of ESN:
+		-can train very fast because they just fit a linear model
+		- they demonstrate that its very important to initialize weights sensibly
+		- they can do impressive modelling of one-dimensional time-series
+			-but they cannot compete seriously for high-dimensional data like pre-processed speech
+	- bad aspectes of ESNs
+		- they need many more hidden units for a given task then an RNN that learns the hidden->hidden weights
+		-Ilya Sutskerver (2012) has shown that if the weights are initilized using the ESN methods, RNNs can be trained very effectively.
+		
+Lesson 9.	
+   		
    
    
 
