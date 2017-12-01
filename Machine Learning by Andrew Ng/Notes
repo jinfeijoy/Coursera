@@ -178,7 +178,22 @@ Photo OCR:
 				- whether a charaters, or include 2 charaters split in middle, or empty
 				- to get right location to splite character
 				- after split the characters, then do character classification.
-			
-	
+	- Getting lots of data and artificial data:
+		- download from web, change the background of charater
+		- take a row image, and create additional dataset, synthesizing data by introducing distortions.
+			- speech recognition
+				- original autio, audio on bad cellphone connection, noisy background: crowd, noisy background: machinery
+		- how much work would it be to get 10x as much data as we currently have:
+			- "crowd source" (e.g amazon mechanical turk)
+			- collect/label it yourself
+			- artificial data synthesis
+	- ceiling analysis: what part of the pipeline to work on next
+		- Image -> text detection -> character segmentation -> character recognition
+			- what part of the pipeline should you spend the most time trying to improve?
+				- correct each part, to see the accuracy change, then select the part with the largest performance gain 
+		- another ceiling analysis example:
+			- face recognition from images (Artificial examples)
+				- camera image -> preprocess (remove background) -> face detection -> (eye segmentation, nose segmentation, mouth segmentation) -> logistic regression -> label
+				
 
 
