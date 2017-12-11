@@ -12,3 +12,9 @@ topics:
 -the activation function
         - consider the derivative of that function to see why ReLU works better than sigmoid
         - ReLU: https://medium.com/@karpathy/yes-you-should-understand-backprop-e2f06eab496b  
+       
+- dataset for projects:
+        - http://yann.lecun.com/exdb/mnist/ 
+        - https://www.cs.toronto.edu/~kriz/cifar.html 
+        - https://www.kaggle.com/datasets
+        - http://archive.ics.uci.edu/ml/index.php
