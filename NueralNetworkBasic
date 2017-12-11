@@ -1,0 +1,14 @@
+topics:
+-basic architecture (fully-connected neural network)
+-data preparation (ie. normalize the inputs before fitting your model)
+-activation functions (eg. sigmoid vs ReLU etc)
+-backpropagation
+-learning rate
+-learning momentum and ADAM
+-batch normalization
+-convolutional neural networks
+-max pool 
+
+-the activation function
+        - consider the derivative of that function to see why ReLU works better than sigmoid
+        - ReLU: https://medium.com/@karpathy/yes-you-should-understand-backprop-e2f06eab496b  
